@@ -14,10 +14,10 @@ def login(request):
         if request.method == 'POST':
             data = request.POST.copy() # so we can manipulate data
             form = LoginForm(data)
-            print(form.__dict__.keys())
-            # if form.is_valid():
-            #     user = User.objects.get(email=data['email'])
-            #     user.is_authenticated = True
+            # print(form.__dict__.keys())
+            if form.is_valid():
+                user = User.objects.get(email=data['email'])
+                user.is_authenticated = True
             return render(request, template_name='home.html', context={'user': None})
         else:
             form = LoginForm()
